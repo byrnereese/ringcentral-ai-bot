@@ -18,17 +18,25 @@
 
 To get started, click the &quot;Start Tutorial&quot; button below.</p><a href="#0">Start Tutorial</a></div><div class="saurus-content"><style>ul {
   list-style-type: disc;
-  list-style-position: inside;
 }
 ol { 
   list-style-type: decimal;
-  list-style-position: inside;
-}
-#viewsaurus menu, #viewsaurus ol, #viewsaurus ul {
-    padding: 0 0 0 15px;
 }
 #viewsaurus .saurus-prose {
     width: 40%;
+}
+#viewsaurus .saurus-prose .saurus-content {
+    padding: 20px 30px 50px 30px;
+}
+#viewsaurus .saurus-prose .saurus-content .step p {
+    font-size: 1em;
+}
+#viewsaurus menu, #viewsaurus ol, #viewsaurus ul {
+    margin: 0 0 10px 15px;
+}
+#viewsaurus .saurus-prose .saurus-content .step ul li {
+    font-size: 1em;
+    padding-bottom: 3px;
 }</style><script>window.addEventListener('load', function() {
   document.querySelectorAll('.saurus-content a').forEach(function(dom) {
     dom.setAttribute('target', '_blank')
@@ -51,21 +59,25 @@ ol {
 </ol>
 <h3 id="clone-repository">Clone Repository</h3>
 <p>Next, let&#39;s download and setup the bot code. Run the following commands:</p>
-<pre><code>git clone git@github.com:ringcentral-tutorials/ringcentral-ai-bot.git
-</code></pre><p>Or, as needed:</p>
-<pre><code>git clone https://github.com/ringcentral-tutorials/ringcentral-ai-bot.git
-</code></pre><p>Then, after the repository is cloned, install the necessary prerequisites:</p>
-<pre><code>cd ringcentral-ai-bot
-yarn
-</code></pre><h3 id="sign-up-for-google-cloud-apis">Sign-up for Google Cloud APIs</h3>
+<pre><code class="cm-s-monokai lang-shell"><span class="cm-def">$ git</span> clone <span class="cm-builtin">git</span>@github.com:ringcentral-tutorials/ringcentral-ai-bot.git
+</code></pre>
+<p>Or, as needed:</p>
+<pre><code class="cm-s-monokai lang-shell"><span class="cm-def">$ git</span> clone https://github.com/ringcentral-tutorials/ringcentral-ai-bot.git
+</code></pre>
+<p>Then, after the repository is cloned, install the necessary prerequisites:</p>
+<pre><code class="cm-s-monokai lang-shell"><span class="cm-def">$ cd</span> ringcentral-ai-bot
+<span class="cm-def">$ yarn</span>
+</code></pre>
+<h3 id="sign-up-for-google-cloud-apis">Sign-up for Google Cloud APIs</h3>
 <p><strong>Note</strong> If you want to see how it work quickly, you do can skip this part, bot will still work, just with fake demo data.</p>
 <p>This demo relies on Google&#39;s Cloud Speech API for transcription, and its Natural Language API for analysis. This will require you to <a href="https://cloud.google.com/speech-to-text/">create and activate a Google Cloud API account</a>, and download access credentials to your local machine. </p>
 <p>Accounts are free, and to access the APIs required by this guide you will need to enter in a valid credit card. Your credit card <strong>will not</strong> be charged unless you manually upgrade to a paid account.</p>
 <p>Google will prompt you to download your GOOGLE_APPLICATION_CREDENTIALS file. Save this file as <code>google_cloud.json</code> and save it to the root of the git repository you cloned above.</p>
 <h3 id="setup-your-proxy">Setup Your Proxy</h3>
 <p>Open a terminal window and navigate to <code>ringcentral-ai-bot</code>. Then run the following command to open up a public tunnel to your local development environment:</p>
-<pre><code>yarn proxy
-</code></pre><p>Running this command will launch ngrok and display to you on the screen the ngrok URL to which requests can be sent. Make note of the HTTPS URL displayed in your terminal. It will look something like this:</p>
+<pre><code class="cm-s-monokai lang-shell"><span class="cm-def">$ yarn</span> proxy
+</code></pre>
+<p>Running this command will launch ngrok and display to you on the screen the ngrok URL to which requests can be sent. Make note of the HTTPS URL displayed in your terminal. It will look something like this:</p>
 <pre><code>Forwarding        https://1234abcd.ngrok.io -&gt; localhost:7867
 </code></pre></div><div data-title="Create Your Apps" data-file="../README.md" data-highlight="64-93" class="step"><h2 id="create-your-apps">Create Your Apps</h2>
 <p>Next, we need to login to <a href="https://developer.ringcentral.com">developers.ringcentral.com</a> and create the two apps utilized by this framework to host a bot. Below you will be guided through the process of:</p>
@@ -120,9 +132,10 @@ yarn
 </div><div data-title="Start Your Server" data-file="../README.md" data-highlight="105-111" class="step"><h2 id="start-your-server">Start Your Server</h2>
 <h3 id="edit-your-config-file">Edit Your Config File</h3>
 <p>With your apps created, we complete the setup process by editing your config parameters and then start the servers. Begin by creating and editing your config file. Open another terminal window, and run the following commands:</p>
-<pre><code>cd ringcentral-ai-bot
-cp .sample.env .env
-</code></pre><p>Edit the <code>.env</code> you just created, and set the following parameters according the values you made note of above:</p>
+<pre><code class="cm-s-monokai lang-shell"><span class="cm-def">$ cd</span> ringcentral-ai-bot
+<span class="cm-def">$ cp</span> .sample.env .env
+</code></pre>
+<p>Edit the <code>.env</code> you just created, and set the following parameters according the values you made note of above:</p>
 <ul>
 <li><code>RINGCENTRAL_BOT_CLIENT_ID</code></li>
 <li><code>RINGCENTRAL_BOT_CLIENT_SECRET</code></li>
@@ -133,8 +146,9 @@ cp .sample.env .env
 <p>For the Google credentials, enter in the path to the <code>google_cloud.json</code> file you downloaded and saved earlier, or leave empty, then bot will use fake demo data to demo the process.</p>
 <h3 id="start-the-server">Start the Server</h3>
 <p>We are almost done. Next, start your bot and web server by running the following command:</p>
-<pre><code>yarn dev
-</code></pre><h3 id="add-the-bot-to-glip">Add the Bot to Glip</h3>
+<pre><code class="cm-s-monokai lang-shell"><span class="cm-def">$ yarn</span> dev
+</code></pre>
+<h3 id="add-the-bot-to-glip">Add the Bot to Glip</h3>
 <p>As the last step, we need to add your bot as a user in the Glip messaging interface. </p>
 <ol>
 <li>Login to developers.ringcentral.com</li>
@@ -215,11 +229,12 @@ cp .sample.env .env
 </div><div data-title="Subscribing to Voicemail Events" data-file="../src/lambda/lib/store.js" data-highlight="251-264" class="step"><h2 id="subscribing-to-voicemail-events">Subscribing to Voicemail Events</h2>
 <p>The process and API for subscribing to Voicemail events is the same as subscription to Glip events. </p>
 <p>We will subscribe to these event filters:</p>
-<pre><code>[
-  &#39;/restapi/v1.0/account/~/extension/~/message-store&#39;,
-  &#39;/restapi/v1.0/subscription/~?threshold=59&amp;interval=15&#39;
+<pre><code class="cm-s-monokai lang-js">[
+  <span class="cm-string">&#39;/restapi/v1.0/account/~/extension/~/message-store&#39;</span>,
+  <span class="cm-string">&#39;/restapi/v1.0/subscription/~?threshold=59&amp;interval=15&#39;</span>
 ]
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>The <code>message-store</code> event will be triggered when a new voicemail is received.</li>
 <li>The <code>/restapi/v1.0/subscription/~?threshold=59&amp;interval=15</code> event will be triggered whenever the <code>message-store</code> event is about to expire. This ensures that as long as the bot is running, we will continually renew our subscription to voicemail events. In the event that the bot server is taken down, then the subscription will be permitted to expire gracefully.</li>
 </ul>
@@ -247,7 +262,7 @@ cp .sample.env .env
 <li>Add a custom command of your design and choosing. </li>
 </ul>
 </div><div data-title="Support the &quot;unmonitor&quot; command" data-file="../src/lambda/lib/bot-webhook.js" data-highlight="64-83" class="step"><h2 id="support-the-unmonitor-command">Support the &quot;unmonitor&quot; command</h2>
-<p>We left the &quot;unmonitor&quot; command unimplemented. All you have to do is ncomment line s74-82 and comment out lines 68-72, and restart your server.</p>
+<p>We left the &quot;unmonitor&quot; command unimplemented. All you have to do is ncomment lines 74-82 and comment out lines 68-72, and restart your server.</p>
 <p>Ask yourself, what are the two states we must account for when processing an unmonitor command?</p>
 </div><div data-title="Show the number of new voicemails received" data-file="../src/lambda/lib/user-webhook.js" data-highlight="24-40" class="step"><h2 id="show-the-number-of-new-voicemails-received">Show the number of new voicemails received</h2>
 <p>Some people may find the transcription posted by the bot to be cumbersome. So let&#39;s simplify the response by simply notifying the user they received a new voicemail, and by telling them how many voicemails they have waiting.</p>

@@ -1,17 +1,25 @@
 style.
   ul {
     list-style-type: disc;
-    list-style-position: inside;
   }
   ol { 
     list-style-type: decimal;
-    list-style-position: inside;
-  }
-  #viewsaurus menu, #viewsaurus ol, #viewsaurus ul {
-      padding: 0 0 0 15px;
   }
   #viewsaurus .saurus-prose {
       width: 40%;
+  }
+  #viewsaurus .saurus-prose .saurus-content {
+      padding: 20px 30px 50px 30px;
+  }
+  #viewsaurus .saurus-prose .saurus-content .step p {
+      font-size: 1em;
+  }
+  #viewsaurus menu, #viewsaurus ol, #viewsaurus ul {
+      margin: 0 0 10px 15px;
+  }
+  #viewsaurus .saurus-prose .saurus-content .step ul li {
+      font-size: 1em;
+      padding-bottom: 3px;
   }
 script.
   window.addEventListener('load', function() {
@@ -49,21 +57,21 @@ script.
 
       Next, let's download and setup the bot code. Run the following commands:
 
-      ```
-      git clone git@github.com:ringcentral-tutorials/ringcentral-ai-bot.git
+      ```shell
+      $ git clone git@github.com:ringcentral-tutorials/ringcentral-ai-bot.git
       ```
 
       Or, as needed:
 
-      ```
-      git clone https://github.com/ringcentral-tutorials/ringcentral-ai-bot.git
+      ```shell
+      $ git clone https://github.com/ringcentral-tutorials/ringcentral-ai-bot.git
       ```
 
       Then, after the repository is cloned, install the necessary prerequisites:
 
-      ```
-      cd ringcentral-ai-bot
-      yarn
+      ```shell
+      $ cd ringcentral-ai-bot
+      $ yarn
       ```
 
       ### Sign-up for Google Cloud APIs
@@ -80,8 +88,8 @@ script.
 
       Open a terminal window and navigate to `ringcentral-ai-bot`. Then run the following command to open up a public tunnel to your local development environment:
 
-      ```
-      yarn proxy
+      ```shell
+      $ yarn proxy
       ```
 
       Running this command will launch ngrok and display to you on the screen the ngrok URL to which requests can be sent. Make note of the HTTPS URL displayed in your terminal. It will look something like this:
@@ -144,9 +152,9 @@ script.
 
       With your apps created, we complete the setup process by editing your config parameters and then start the servers. Begin by creating and editing your config file. Open another terminal window, and run the following commands:
 
-      ```
-      cd ringcentral-ai-bot
-      cp .sample.env .env
+      ```shell
+      $ cd ringcentral-ai-bot
+      $ cp .sample.env .env
       ```
 
       Edit the `.env` you just created, and set the following parameters according the values you made note of above:
@@ -163,8 +171,8 @@ script.
 
       We are almost done. Next, start your bot and web server by running the following command:
 
-      ```
-      yarn dev
+      ```shell
+      $ yarn dev
       ```
 
       ### Add the Bot to Glip
@@ -305,7 +313,7 @@ script.
 
       We will subscribe to these event filters:
 
-      ```
+      ```js
       [
         '/restapi/v1.0/account/~/extension/~/message-store',
         '/restapi/v1.0/subscription/~?threshold=59&interval=15'
@@ -359,7 +367,7 @@ script.
     :markdown
       ## Support the "unmonitor" command
 
-      We left the "unmonitor" command unimplemented. All you have to do is ncomment line s74-82 and comment out lines 68-72, and restart your server.
+      We left the "unmonitor" command unimplemented. All you have to do is ncomment lines 74-82 and comment out lines 68-72, and restart your server.
 
       Ask yourself, what are the two states we must account for when processing an unmonitor command?
 
